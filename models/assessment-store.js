@@ -5,6 +5,13 @@
 
 const logger = require('../utils/logger');
 
-const listOfAssessments = require('./assessment-store.json');
+const assessmentStore = {
+    listOfAssessments: require('./assessment-store.json'),
 
-module.exports = listOfAssessments;
+    addAssessment(assessment) {
+        this.listOfAssessments.assessments.push(assessment);
+    },
+};
+
+
+module.exports = assessmentStore;
