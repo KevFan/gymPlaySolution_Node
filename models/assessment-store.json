@@ -1,0 +1,12 @@
+{
+  "assessments": [
+    {
+      "weight": 0,
+      "chest": 1,
+      "thigh": 2,
+      "upperArm": 3,
+      "waist": 4,
+      "hips": 5
+    }
+  ]
+}
