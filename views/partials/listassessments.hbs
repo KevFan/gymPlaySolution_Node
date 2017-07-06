@@ -12,30 +12,30 @@
   </thead>
   <tbody>
     {{#each assessmentlist.assessments}}
-    <tr>
-      <td>
-        {{weight}}
-      </td>
-      <td>
-        {{chest}}
-      </td>
-      <td>
-        {{thigh}}
-      </td>
-      <td>
-        {{upperArm}}
-      </td>
-      <td>
-        {{waist}}
-      </td>
-      <td>
-        {{hips}}
-      </td>
-      <td>
-        <a href="/dashboard/deleteassessment/{{id}}" class="ui icon button">
-          <i class="icon trash"></i>
-        </a>
-      </td>
+        <tr>
+          <td>
+            {{weight}}
+          </td>
+          <td>
+            {{chest}}
+          </td>
+          <td>
+            {{thigh}}
+          </td>
+          <td>
+            {{upperArm}}
+          </td>
+          <td>
+            {{waist}}
+          </td>
+          <td>
+            {{hips}}
+          </td>
+          <td>
+            <a href="/dashboard/deleteassessment/{{id}}" class="ui icon button">
+              <i class="icon trash"></i>
+            </a>
+          </td>
     {{/each}}
   </tbody>
 </table>
