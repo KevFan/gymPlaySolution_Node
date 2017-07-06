@@ -1,13 +1,32 @@
 {
-  "assessments": [
+  "assessmentListCollection": [
     {
-      "id" : "01",
-      "weight": 0,
-      "chest": 1,
-      "thigh": 2,
-      "upperArm": 3,
-      "waist": 4,
-      "hips": 5
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "assessments": [
+        {
+          "id": "01",
+          "weight": 0,
+          "chest": 1,
+          "thigh": 2,
+          "upperArm": 3,
+          "waist": 4,
+          "hips": 5
+        }
+      ]
+    },
+    {
+      "userid": "2b6f0989-7b7f-4a38-ad26-aa06b922d751",
+      "assessments": [
+        {
+          "id": "02",
+          "weight": 5,
+          "chest": 4,
+          "thigh": 3,
+          "upperArm": 2,
+          "waist": 1,
+          "hips": 0
+        }
+      ]
     }
   ]
 }
