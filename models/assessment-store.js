@@ -21,7 +21,7 @@ const assessmentStore = {
       this.store.add(this.collection, assessmentList);
       this.store.save();
     }
-    assessmentList.assessments.push(assessment);
+    assessmentList.assessments.unshift(assessment);
     this.store.save();
   },
 

@@ -4,14 +4,19 @@ const logger = require('../utils/logger');
 const assessmentStore = require('../models/assessment-store');
 const uuid = require('uuid');
 const accounts = require('./accounts.js');
+const analytics = require('../utils/analytics');
+let memberStats = require('../utils/memberStats');
 
 const dashboard = {
   index(request, response) {
     logger.info('dashboard rendering');
     const loggedInUser = accounts.getCurrentUser(request);
+    memberStats = analytics.generateMemberStats(loggedInUser);
     const viewData = {
       title: 'Playlist Dashboard',
       assessmentlist: assessmentStore.getAssessmentList(loggedInUser.id),
+      user: loggedInUser,
+      stats: memberStats,
     };
     logger.info('about to render user: ', assessmentStore.getAssessmentList(loggedInUser.id));
     response.render('dashboard', viewData);
