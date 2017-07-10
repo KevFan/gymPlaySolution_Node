@@ -9,21 +9,22 @@ const assessmentStore = require('../models/assessment-store');
 const analytics = {
 
   generateMemberStats(member) {
-    let weight = member.startingweight;;
+    let weight = member.startingweight;
     let assessmentlist = assessmentStore.getAssessmentList(member.id);
     if (assessmentlist.assessments.length > 0) {
       weight = assessmentlist.assessments[0].weight;
     }
-    logger.info("Weight is " + weight)
-      memberStats.bmi = this.calculateBMI(member, weight);
-      memberStats.bmiCategory = this.determineBMICategory(member, weight);
-      memberStats.isIdealBodyweight = this.isIdealBodyWeight(member, weight);
-      memberStats.trend = true;
+    memberStats.bmi = this.calculateBMI(member, weight);
+    memberStats.bmiCategory = this.determineBMICategory(member, weight);
+    memberStats.isIdealBodyweight = this.isIdealBodyWeight(member, weight);
+    memberStats.trend = true;
     if (assessmentlist.assessments.length > 1) {
-      memberStats.trend = assessmentlist.assessments[assessmentlist.assessments.length - 2].weight > assessmentlist.assessments[assessmentlist.assessments.length - 1].weight;
+      if (weight > assessmentlist.assessments[1].weight) {
+        memberStats.trend = false;
+      }
     }
-  return memberStats;
-},
+    return memberStats;
+  },
 
   calculateBMI(member, weight) {
     if (member.height <= 0)

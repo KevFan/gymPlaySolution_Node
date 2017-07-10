@@ -5,15 +5,14 @@ const assessmentStore = require('../models/assessment-store');
 const uuid = require('uuid');
 const accounts = require('./accounts.js');
 const analytics = require('../utils/analytics');
-let memberStats = require('../utils/memberStats');
 
 const dashboard = {
   index(request, response) {
     logger.info('dashboard rendering');
     const loggedInUser = accounts.getCurrentUser(request);
-    memberStats = analytics.generateMemberStats(loggedInUser);
+    let memberStats = analytics.generateMemberStats(loggedInUser);
     const viewData = {
-      title: 'Playlist Dashboard',
+      title: 'Member Dashboard',
       assessmentlist: assessmentStore.getAssessmentList(loggedInUser.id),
       user: loggedInUser,
       stats: memberStats,
@@ -24,17 +23,23 @@ const dashboard = {
 
   addAssessment(request, response) {
     const loggedInUser = accounts.getCurrentUser(request);
+    const date = new Date().toDateString();
     const newAssessment = {
       id: uuid(),
+      date: date,
       weight: Number(request.body.weight),
       chest: Number(request.body.chest),
       thigh: Number(request.body.thigh),
       upperArm: Number(request.body.upperArm),
       waist: Number(request.body.waist),
       hips: Number(request.body.hips),
+      trend: false,
     };
-    logger.debug('New Assessment = ', newAssessment);
     assessmentStore.addAssessment(loggedInUser.id, newAssessment);
+    let memberStats = analytics.generateMemberStats(loggedInUser);
+    newAssessment.trend = memberStats.trend;
+    assessmentStore.store.save();
+    logger.debug('New Assessment = ', newAssessment);
     response.redirect('/dashboard/');
   },
 
