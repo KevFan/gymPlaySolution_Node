@@ -34,8 +34,11 @@ const dashboard = {
       waist: Number(request.body.waist),
       hips: Number(request.body.hips),
       trend: false,
+      comment: "",
     };
     assessmentStore.addAssessment(loggedInUser.id, newAssessment);
+    loggedInUser.noOfAssessments += 1;
+    userstore.store.save();
     let memberStats = analytics.generateMemberStats(loggedInUser);
     newAssessment.trend = memberStats.trend;
     assessmentStore.store.save();
@@ -46,6 +49,8 @@ const dashboard = {
   deleteAssessment(request, response) {
     const loggedInUser = accounts.getCurrentUser(request);
     assessmentStore.removeAssessment(loggedInUser.id, request.params.assessmentid);
+    loggedInUser.noOfAssessments -= 1;
+    userstore.store.save();
     response.redirect('/dashboard/');
   },
 

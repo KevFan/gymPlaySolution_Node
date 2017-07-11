@@ -1,6 +1,7 @@
 'use strict';
 
 const userstore = require('../models/user-store');
+const trainerstore = require('../models/trainer-store');
 const logger = require('../utils/logger');
 const uuid = require('uuid');
 
@@ -35,6 +36,7 @@ const accounts = {
   register(request, response) {
     const user = request.body;
     user.id = uuid();
+    user.noOfAssessments = 0;
     userstore.addUser(user);
     logger.info(`registering ${user.email}`);
     response.redirect('/');
@@ -42,10 +44,15 @@ const accounts = {
 
   authenticate(request, response) {
     const user = userstore.getUserByEmail(request.body.email);
+    const trainer = trainerstore.getTrainerByEmail(request.body.email);
     if (user) {
       response.cookie('user', user.email);
       logger.info(`logging in ${user.email}`);
       response.redirect('/dashboard');
+    } else if (trainer)  {
+      response.cookie('user', trainer.email);
+      logger.info(`logging in ${trainer.email}`);
+      response.redirect('/trainerdashboard');
     } else {
       response.redirect('/login');
     }
