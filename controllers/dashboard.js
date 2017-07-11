@@ -5,6 +5,7 @@ const assessmentStore = require('../models/assessment-store');
 const uuid = require('uuid');
 const accounts = require('./accounts.js');
 const analytics = require('../utils/analytics');
+const userstore = require('../models/user-store');
 
 const dashboard = {
   index(request, response) {
@@ -17,16 +18,15 @@ const dashboard = {
       user: loggedInUser,
       stats: memberStats,
     };
-    logger.info('about to render user: ', assessmentStore.getAssessmentList(loggedInUser.id));
+    logger.info('about to render user: ', loggedInUser);
     response.render('dashboard', viewData);
   },
 
   addAssessment(request, response) {
     const loggedInUser = accounts.getCurrentUser(request);
-    const date = new Date().toDateString();
     const newAssessment = {
       id: uuid(),
-      date: date,
+      date: new Date().toUTCString(),
       weight: Number(request.body.weight),
       chest: Number(request.body.chest),
       thigh: Number(request.body.thigh),
@@ -47,6 +47,32 @@ const dashboard = {
     const loggedInUser = accounts.getCurrentUser(request);
     assessmentStore.removeAssessment(loggedInUser.id, request.params.assessmentid);
     response.redirect('/dashboard/');
+  },
+
+  //TODO: Gives an user undefined error :/
+  settings(request, response) {
+    const loggedInUser = accounts.getCurrentUser(request);
+    const viewData = {
+      title: 'Settings',
+      user: loggedInUser,
+    };
+    logger.info('about to render setting: ', loggedInUser);
+    response.render('settings', viewData);
+  },
+
+  updateSettings(request, response) {
+    let loggedInUser = accounts.getCurrentUser(request);
+    loggedInUser.email = request.body.email;
+    loggedInUser.name = request.body.name;
+    loggedInUser.password = request.body.password;
+    loggedInUser.address = request.body.address;
+    loggedInUser.gender = request.body.gender;
+    loggedInUser.height = Number(request.body.height);
+    loggedInUser.startingweight = Number(request.body.startingweight);
+
+    userstore.store.save();
+    logger.info('about to render setting: ', loggedInUser);
+    response.redirect(/settings/)
   },
 };
 
