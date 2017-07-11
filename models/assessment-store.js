@@ -34,6 +34,27 @@ const assessmentStore = {
   getAssessmentList(userid) {
     return this.store.findOneBy(this.collection, { userid: userid });
   },
+
+  getAssessmentById(userid, assessmentid) {
+    const assessmentlist = this.getAssessmentList(userid).assessments;
+    logger.info('assessmentlist is ', assessmentlist);
+    let assessment = null;
+    for (let i = 0; i < assessmentlist.length; i++) {
+      if (assessmentid === assessmentlist[i].id) {
+        assessment = assessmentlist[i];
+      }
+    }
+    logger.info('assessment is ', assessment);
+    return assessment;
+  },
+
+
+  removeAssessmentList(userid) {
+    let assessmentList = this.getAssessmentList(userid);
+    this.store.remove(this.collection, assessmentList);
+    this.store.save();
+    logger.info('assessmentlist to be removed is ', assessmentList);
+  }
 };
 
 

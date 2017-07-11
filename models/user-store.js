@@ -14,6 +14,7 @@ const userStore = {
 
   addUser(user) {
     this.store.add(this.collection, user);
+    this.store.save();
   },
 
   getUserById(id) {
@@ -22,6 +23,11 @@ const userStore = {
 
   getUserByEmail(email) {
     return this.store.findOneBy(this.collection, { email: email });
+  },
+
+  removeUser(user) {
+    this.store.remove(this.collection, user);
+    this.store.save();
   },
 };
 

@@ -2,29 +2,22 @@
   "assessmentListCollection": [
     {
       "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "assessments": [
-        {
-          "id": "01",
-          "weight": 0,
-          "chest": 1,
-          "thigh": 2,
-          "upperArm": 3,
-          "waist": 4,
-          "hips": 5
-        }
-      ]
+      "assessments": []
     },
     {
       "userid": "2b6f0989-7b7f-4a38-ad26-aa06b922d751",
       "assessments": [
         {
-          "id": "68cd30ec-6d4e-4d70-ab63-b8e0b184460c",
-          "weight": 5,
-          "chest": 4,
-          "thigh": 3,
-          "upperArm": 2,
-          "waist": 1,
-          "hips": 0
+          "id": "306840f1-0697-42ca-a2fc-f0e66dc4525f",
+          "date": "Tue, 11 Jul 2017 10:55:23 GMT",
+          "weight": 0,
+          "chest": 0,
+          "thigh": 0,
+          "upperArm": 0,
+          "waist": 0,
+          "hips": 0,
+          "trend": true,
+          "comment": ""
         }
       ]
     }
