@@ -45,11 +45,11 @@ const accounts = {
   authenticate(request, response) {
     const user = userstore.getUserByEmail(request.body.email);
     const trainer = trainerstore.getTrainerByEmail(request.body.email);
-    if (user) {
+    if (user && user.password === request.body.password) {
       response.cookie('user', user.email);
       logger.info(`logging in ${user.email}`);
       response.redirect('/dashboard');
-    } else if (trainer)  {
+    } else if (trainer && trainer.password === request.body.password)  {
       response.cookie('user', trainer.email);
       logger.info(`logging in ${trainer.email}`);
       response.redirect('/trainerdashboard');
