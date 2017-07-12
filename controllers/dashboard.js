@@ -8,6 +8,11 @@ const analytics = require('../utils/analytics');
 const userstore = require('../models/user-store');
 
 const dashboard = {
+  /**
+   * Renders the user main dashboard
+   * @param request to render user dashboard after logging in
+   * @param response renders dashboard view with user details, assessments & stats
+   */
   index(request, response) {
     logger.info('dashboard rendering');
     const loggedInUser = accounts.getCurrentUser(request);
@@ -22,6 +27,11 @@ const dashboard = {
     response.render('dashboard', viewData);
   },
 
+  /**
+   * Adds an assessment to the current user's assessment list
+   * @param request to add assessment
+   * @param response adds assessment to user assessment list
+   */
   addAssessment(request, response) {
     const loggedInUser = accounts.getCurrentUser(request);
     const newAssessment = {
@@ -46,6 +56,11 @@ const dashboard = {
     response.redirect('/dashboard/');
   },
 
+  /**
+   * Deletes selected assessment from user assessment list
+   * @param request
+   * @param response
+   */
   deleteAssessment(request, response) {
     const loggedInUser = accounts.getCurrentUser(request);
     assessmentStore.removeAssessment(loggedInUser.id, request.params.assessmentid);
@@ -54,7 +69,11 @@ const dashboard = {
     response.redirect('/dashboard/');
   },
 
-  //TODO: Gives an user undefined error :/
+  /**
+   * Renders user settings view with current user account details
+   * @param request to render settings view
+   * @param response renders user settings view
+   */
   settings(request, response) {
     const loggedInUser = accounts.getCurrentUser(request);
     const viewData = {
@@ -65,6 +84,11 @@ const dashboard = {
     response.render('settings', viewData);
   },
 
+  /**
+   * Updates the user account details with any changes made
+   * @param request to update account details
+   * @param response updates the account details and refreshes setting view
+   */
   updateSettings(request, response) {
     let loggedInUser = accounts.getCurrentUser(request);
     loggedInUser.email = request.body.email;
