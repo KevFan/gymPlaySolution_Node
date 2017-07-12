@@ -50,7 +50,9 @@ The above user and trainer accounts should also work for the deployed version, a
 
 ### List of Software + Technologies Used
 + [Node.js](https://nodejs.org/en/)
++ [Express](https://expressjs.com/) - Node.js Web Framework
 + [Glitch](https://glitch.com/) - Deployment platform
++ [Lowdb](https://github.com/typicode/lowdb) - JSon database for persistence
 + [WebStorm](https://www.jetbrains.com/webstorm/) - JavaScript IDE
 
 
