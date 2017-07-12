@@ -8,6 +8,10 @@ const assessmentStore = require('../models/assessment-store');
 
 const analytics = {
 
+  /**
+   * Generates the member stats - BMI, isIdealWeight, Assessment Trend & BMI Category
+   * @param member
+   */
   generateMemberStats(member) {
     if (assessmentStore.getAssessmentList(member.id)) {
       let weight = member.startingweight;
@@ -30,6 +34,12 @@ const analytics = {
     return memberStats;
   },
 
+  /**
+   * Returns the BMI of the user
+   * @param member User for details to calculate BMI
+   * @param weight Weight of the user
+   * @returns {*} BMI Integer of the user
+   */
   calculateBMI(member, weight) {
     if (member.height <= 0)
       return 0;
@@ -37,6 +47,12 @@ const analytics = {
       return conversion.round((weight / (member.height * member.height)), 2);
   },
 
+  /**
+   * Returns the BMI Category of the user
+   * @param member User to get details to determine BMI Category
+   * @param weight Weight of the User
+   * @returns {*} String of the user BMI Category
+   */
   determineBMICategory(member, weight) {
     let bmi = this.calculateBMI(member, weight);
 
@@ -50,6 +66,12 @@ const analytics = {
     else return "VERY SEVERELY OBESE";
   },
 
+  /**
+   * Returns a boolean of whether the user is the ideal weight
+   * @param member User to get details to determine ideal weight
+   * @param weight Current weight of the user
+   * @returns {boolean} Boolean of whether user is the ideal weight
+   */
   isIdealBodyWeight(member, weight) {
     let fiveFeet = 60.0;
     let idealBodyWeight;
@@ -70,7 +92,7 @@ const analytics = {
       }
     }
 
-    logger.info("Ideal Weight" + idealBodyWeight);
+    logger.info("Ideal Weight: " + idealBodyWeight);
     return ((idealBodyWeight <= (weight + 2.0))
       && (idealBodyWeight >= (weight - 2.0))
     );
