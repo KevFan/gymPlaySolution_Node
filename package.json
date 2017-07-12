@@ -1,7 +1,7 @@
 {
-  "name": "gomix-list",
+  "name": "Gym Play Node",
   "version": "0.0.1",
-  "description": "Starter project for learning glitch and express",
+  "description": "Conversion attempt of Play Web Assignment Solution to Node.js",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -22,7 +22,7 @@
     "node": "6.10.x"
   },
   "repository": {
-    "url": "https://github.com/wit-ictskills-studio-2017/glitch-template-1.git"
+    "url": "https://github.com/KevFan/gymPlaySolution_Node.git"
   },
   "license": "MIT",
   "keywords": [
