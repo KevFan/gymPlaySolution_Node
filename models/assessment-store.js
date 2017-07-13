@@ -1,6 +1,7 @@
 /**
  * Created by kevin on 20/06/2017.
  */
+
 'use strict';
 
 const _ = require('lodash');
@@ -30,6 +31,7 @@ const assessmentStore = {
       this.store.add(this.collection, assessmentList);
       this.store.save();
     }
+
     assessmentList.assessments.unshift(assessment);
     this.store.save();
   },
@@ -41,7 +43,7 @@ const assessmentStore = {
    */
   removeAssessment(userId, assessmentId) {
     let assessmentList = this.getAssessmentList(userId);
-    _.remove(assessmentList.assessments, { id: assessmentId});
+    _.remove(assessmentList.assessments, { id: assessmentId });
     this.store.save();
   },
 
@@ -69,6 +71,7 @@ const assessmentStore = {
         assessment = assessmentlist[i];
       }
     }
+
     logger.info('assessment is ', assessment);
     return assessment;
   },
@@ -84,9 +87,9 @@ const assessmentStore = {
       this.store.remove(this.collection, assessmentList);
       this.store.save();
     }
-    logger.info('assessmentlist to be removed is ', assessmentList);
-  }
-};
 
+    logger.info('assessmentlist to be removed is ', assessmentList);
+  },
+};
 
 module.exports = assessmentStore;

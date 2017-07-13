@@ -19,6 +19,7 @@ const analytics = {
       if (assessmentlist.assessments.length > 0) {
         weight = assessmentlist.assessments[0].weight;
       }
+
       memberStats.bmi = this.calculateBMI(member, weight);
       memberStats.bmiCategory = this.determineBMICategory(member, weight);
       memberStats.isIdealBodyweight = this.isIdealBodyWeight(member, weight);
@@ -28,6 +29,7 @@ const analytics = {
           memberStats.trend = false;
         }
       }
+
       return memberStats;
     }
 
@@ -56,14 +58,14 @@ const analytics = {
   determineBMICategory(member, weight) {
     let bmi = this.calculateBMI(member, weight);
 
-    if (bmi < 15) return "VERY SEVERELY UNDERWEIGHT";
-    else if (bmi < 16) return "SEVERELY UNDERWEIGHT";
-    else if (bmi < 18.5) return "UNDERWEIGHT";
-    else if (bmi < 25) return "NORMAL";
-    else if (bmi < 30) return "OVERWEIGHT";
-    else if (bmi < 35) return "MODERATELY OBESE";
-    else if (bmi < 40) return "SEVERELY OBESE";
-    else return "VERY SEVERELY OBESE";
+    if (bmi < 15) return 'VERY SEVERELY UNDERWEIGHT';
+    else if (bmi < 16) return 'SEVERELY UNDERWEIGHT';
+    else if (bmi < 18.5) return 'UNDERWEIGHT';
+    else if (bmi < 25) return 'NORMAL';
+    else if (bmi < 30) return 'OVERWEIGHT';
+    else if (bmi < 35) return 'MODERATELY OBESE';
+    else if (bmi < 40) return 'SEVERELY OBESE';
+    else return 'VERY SEVERELY OBESE';
   },
 
   /**
@@ -79,25 +81,24 @@ const analytics = {
     let inches = conversion.convertMetresToInches(member.height, 2);
 
     if (inches <= fiveFeet) {
-      if (member.gender === "M") {
+      if (member.gender === 'M') {
         idealBodyWeight = 50;
       } else {
         idealBodyWeight = 45.5;
       }
     } else {
-      if (member.gender === "M") {
+      if (member.gender === 'M') {
         idealBodyWeight = 50 + ((inches - fiveFeet) * 2.3);
       } else {
         idealBodyWeight = 45.5 + ((inches - fiveFeet) * 2.3);
       }
     }
 
-    logger.info("Ideal Weight: " + idealBodyWeight);
+    logger.info('Ideal Weight: ' + idealBodyWeight);
     return ((idealBodyWeight <= (weight + 2.0))
       && (idealBodyWeight >= (weight - 2.0))
     );
-  }
+  },
 };
-
 
 module.exports = analytics;

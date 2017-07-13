@@ -44,7 +44,7 @@ const dashboard = {
       waist: Number(request.body.waist),
       hips: Number(request.body.hips),
       trend: false,
-      comment: "",
+      comment: '',
     };
     assessmentStore.addAssessment(loggedInUser.id, newAssessment);
     loggedInUser.noOfAssessments += 1;
@@ -101,7 +101,7 @@ const dashboard = {
 
     userstore.store.save();
     logger.info('about to render setting: ', loggedInUser);
-    response.redirect(/settings/)
+    response.redirect(/settings/);
   },
 };
 

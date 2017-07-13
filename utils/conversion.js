@@ -37,8 +37,7 @@ const conversion = {
    */
   convertMetresToInches(numberToConvert, precision) {
     return this.round(numberToConvert * 39.37, precision);
-  }
+  },
 };
-
 
 module.exports = conversion;

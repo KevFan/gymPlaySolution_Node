@@ -6,9 +6,9 @@
 
 let memberStats = {
   bmi: 0,
-  bmiCategory: "",
+  bmiCategory: '',
   isIdealBodyweight: false,
-  trend: false
+  trend: false,
 };
 
 module.exports = memberStats;

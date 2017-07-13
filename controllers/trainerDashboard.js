@@ -1,6 +1,7 @@
 /**
  * Created by kevin on 11/07/2017.
  */
+
 'use strict';
 
 const logger = require('../utils/logger');

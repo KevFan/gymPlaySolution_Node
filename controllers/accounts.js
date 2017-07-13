@@ -78,7 +78,7 @@ const accounts = {
       response.cookie('user', user.email);
       logger.info(`logging in ${user.email}`);
       response.redirect('/dashboard');
-    } else if (trainer && trainer.password === request.body.password)  {
+    } else if (trainer && trainer.password === request.body.password) {
       response.cookie('user', trainer.email);
       logger.info(`logging in ${trainer.email}`);
       response.redirect('/trainerdashboard');
