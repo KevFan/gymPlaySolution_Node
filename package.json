@@ -1,5 +1,5 @@
 {
-  "name": "Gym Play Node",
+  "name": "gym-play-node",
   "version": "0.0.1",
   "description": "Conversion attempt of Play Web Assignment Solution to Node.js",
   "main": "server.js",
